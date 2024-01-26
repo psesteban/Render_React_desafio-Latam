@@ -1,3 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import './Buscador.css'
+
 const Buscador = ({ searchData, setDataSearch }) => {
   const inputHandler = (e) => {
     const searchWord = e.target.value.toLowerCase()
@@ -16,6 +20,7 @@ const Buscador = ({ searchData, setDataSearch }) => {
 
   return (
     <section className='buscador col-12 col-md-6'>
+      <FontAwesomeIcon icon={faSearch} />
       <input
         type='text'
         name='buscador'

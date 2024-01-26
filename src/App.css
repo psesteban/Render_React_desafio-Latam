@@ -1,0 +1,22 @@
+#root {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+.principal {
+    display: flex;
+    flex-direction: row;
+}
+
+.lista {
+    flex: 6;
+
+  }
+
+.formulario {
+    flex: 2;
+
+  }
+  
+}

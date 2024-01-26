@@ -1,9 +1,10 @@
 import { ListGroup, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './Listado.css'
 
 const Listado = ({ colaboradores }) => {
   return (
-    <ListGroup>
+    <ListGroup className='lista'>
       {colaboradores.map((colaborador) => (
         <ListGroup.Item key={colaborador.id}>
           <Row>

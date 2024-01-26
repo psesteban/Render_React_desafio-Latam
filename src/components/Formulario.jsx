@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Alerta from './Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './Formulario.css'
 
 const Formulario = ({ ingresarColaborador, data, mostarNuevoColab }) => {
   const objetoUsuario = {
@@ -55,33 +56,30 @@ const Formulario = ({ ingresarColaborador, data, mostarNuevoColab }) => {
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
-    console.log(user)
   }
   return (
-    <>
-      <Form className='formulario' onSubmit={handleSubmit}>
-        {['Nombre', 'Correo', 'Edad', 'Cargo', 'Telefono'].map((campo) => (
-          <Form.Group
-            key={campo}
-            className='mb-3'
-            controlId={`formBasic${campo}`}
-          >
-            <Form.Control
-              type={campo.includes('Correo') ? 'email' : 'text'}
-              placeholder={campo + ' del colaborador'}
-              name={campo.toLowerCase()}
-              onChange={handleChange}
-              value={user[campo.toLowerCase()]}
-            />
-          </Form.Group>
-        ))}
+    <Form className='formulario border border-2 rounded p-2 m-1 pt-4' onSubmit={handleSubmit}>
+      {['Nombre', 'Correo', 'Edad', 'Cargo', 'Telefono'].map((campo) => (
+        <Form.Group
+          key={campo}
+          className='mb-3'
+          controlId={`formBasic${campo}`}
+        >
+          <Form.Control
+            type={campo.includes('Correo') ? 'email' : 'text'}
+            placeholder={campo + ' del colaborador'}
+            name={campo.toLowerCase()}
+            onChange={handleChange}
+            value={user[campo.toLowerCase()]}
+          />
+        </Form.Group>
+      ))}
 
-        <Button variant='primary' type='submit'>
-          Agregar colaborador
-        </Button>
-      </Form>
+      <Button variant='primary' type='submit'>
+        Agregar colaborador
+      </Button>
       <Alerta color={estilo} text={mensajeDeAdvertencia} />
-    </>
+    </Form>
   )
 }
 
