@@ -1,5 +1,14 @@
+import Alert from "react-bootstrap/Alert";
 
-const Alert = ({ message }) => {
-}
+const Alerta = ({ color, text }) => {
+  console.log(color);
+  console.log(text);
 
-export default Alert;
+  return (
+    <Alert key={color} variant={color} className={`alert-${color}`}>
+      {text}
+    </Alert>
+  );
+};
+
+export default Alerta;

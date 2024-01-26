@@ -4,13 +4,13 @@ import Form from "react-bootstrap/Form";
 import Alerta from "./Alert";
 
 const Formulario = () => {
-  const [user, setUser] = useState({
-    Nombre: "",
-    Email: "",
-    Contraseña: "",
-    RepetirContraseña: "",
-  });
-
+    const [user, setUser] = useState({
+      nombre: "",
+      correo: "",
+      edad: "",
+      cargo: "",
+      telefono: ""
+    });
   const [mensajeDeAdvertencia, setMensajeDeAdvertencia] = useState("");
   const [estilo, setEstilo] = useState("");
 
@@ -35,20 +35,12 @@ const Formulario = () => {
     return true;
   };
 
-  const validarContraseñas = () => {
-    if (user.Contraseña !== user.RepetirContraseña) {
-      setMensajeDeAdvertencia("Las contraseñas no son iguales");
-      setEstilo("danger");
-      return false;
-    }
-    return true;
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const datosValidos =
-      validarDatos() && validarEmail() && validarContraseñas();
+      validarDatos() && validarEmail();
 
     if (datosValidos) {
       setEstilo("success");
@@ -64,16 +56,16 @@ const Formulario = () => {
   return (
     <>
       <Form className="formulario" onSubmit={handleSubmit}>
-        {["Nombre", "Email", "Contraseña", "RepetirContraseña"].map((campo) => (
+        {["Nombre", "Email", "Edad", "Cargo", "Telefono"].map((campo) => (
           <Form.Group
             key={campo}
             className="mb-3"
             controlId={`formBasic${campo}`}
           >
             <Form.Control
-              type={campo.includes("Contraseña") ? "password" : "text"}
-              placeholder={campo === "Email" ? "tuemail@ejemplo.com" : campo}
-              name={campo}
+              type= "text"
+              placeholder={campo + " del colaborador"}
+              name={campo.toLowerCase()}
               onChange={handleChange}
               value={user[campo]}
             />
@@ -81,7 +73,7 @@ const Formulario = () => {
         ))}
 
         <Button variant="primary" type="submit">
-          Registrarse
+          Agregar colaborador
         </Button>
       </Form>
       <Alerta color={estilo} text={mensajeDeAdvertencia} />

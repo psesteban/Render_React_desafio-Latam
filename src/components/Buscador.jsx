@@ -1,10 +1,19 @@
-const Buscador = ({data}) => {
+const Buscador = ({data, setDataSearch}) => {
 const inputHandler = (e) => {
     const searchWord = e.target.value.toLowerCase();
-}
+    // console.log(searchWord);
+    // console.log(data);
+    
 const output = data.filter(
-    (usuario) => usuario.nombre.toLowerCase().includes(searchWord) 
-)
+    (usuario) => 
+    usuario.nombre.toLowerCase().includes(searchWord) ||
+    usuario.correo.toLowerCase().includes(searchWord) ||
+    usuario.edad.toLowerCase().includes(searchWord) ||
+    usuario.cargo.toLowerCase().includes(searchWord) ||
+    usuario.telefono.toLowerCase().includes(searchWord) 
+);
+setDataSearch(output);
+}
 
 return (
     <section className="buscador col-12 col-md-6">
