@@ -1,35 +1,24 @@
-import React from 'react'
 import BaseColaboradores from './components/Base.js'
-import Buscador from './Buscador.jsx'
+import Buscador from './components/Buscador.jsx'
+import Formulario from './components/Formulario.jsx'
 import Listado from './components/Listado.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { useState } from 'react'
 
-export const App = () => {
-
+const App = () => {
   const [data, setData] = useState(BaseColaboradores)
-const [dataFilter, setDataFilter] = useState(data)
-console.log(data)
-
-return (
+  const [dataFilter, setDataFilter] = useState(data)
+  console.log(data)
+  return (
     <>
-    <h1 className='my-4'>
-        {''} Lista de usuarios
-
-    </h1>
-    <Buscador
-    data={data}
-    setDataFilter={setDataFilter}
-    />
-    <div className='row row-cols-2 justify-content-end'>
-<Listado 
-data={data}/>
-<Formulario className="formulario" />
-        
-
-    </div>
-
-
+      <h1>Lista de usuarios</h1>
+      <Buscador searchData={data} setDataSearch={setDataFilter} />
+      <div className='row row-cols-2 justify-content-end'>
+        <Listado data={dataFilter} />
+        <Formulario className='formulario' ingresarColaborador={setData} data={data} />
+      </div>
     </>
-)
+  )
 }
 
 export default App
