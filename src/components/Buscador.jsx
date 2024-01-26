@@ -1,8 +1,6 @@
 const Buscador = ({ searchData, setDataSearch }) => {
   const inputHandler = (e) => {
     const searchWord = e.target.value.toLowerCase()
-    console.log(searchWord)
-    console.log(setDataSearch)
 
     const output = searchData.filter(
       (usuario) =>

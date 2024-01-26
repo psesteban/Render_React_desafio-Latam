@@ -4,8 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Alerta from './Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Formulario = ({ ingresarColaborador, data }) => {
-
+const Formulario = ({ ingresarColaborador, data, mostarNuevoColab }) => {
   const objetoUsuario = {
     id: (parseInt(data.length, 10) + 1).toString(),
     nombre: '',
