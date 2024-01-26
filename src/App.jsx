@@ -1,4 +1,6 @@
 import React from 'react'
+import BaseColaboradores from './components/BaseColaboradores'
+
 
 export const App = () => {
   return (
