@@ -5,6 +5,7 @@ import Listado from './components/Listado.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import { useState } from 'react'
+import Alerta from './components/Alert.jsx'
 
 const App = () => {
   const [data, setData] = useState(BaseColaboradores)
@@ -16,7 +17,7 @@ const App = () => {
   const nuevosColaboradoresConId = (nuevoColaboradorConId)=>{
     const ultimoValor = data[data.length-1]
     const colaboradorConId = {...nuevoColaboradorConId, id: ultimoValor? Number(ultimoValor.id)+1:1}
-    setData([...datos, colaboradorConId])
+    setData([...data, colaboradorConId])
   }
   const mostrarAlerta = (mensajeAlerta)=>{
     setAlert(mensajeAlerta)
@@ -41,11 +42,8 @@ const App = () => {
       <Buscador searchData={dataFilter} setDataFilter={setDataFilter} />
       <main className='principal'>
         <Listado className='lista' colaboradores={filtro} sacarId={sacarId}/>
-        <Formulario
-          className='formulario'
-          ingresarColaborador={setData}
-          data={data}
-        />
+        <Formulario className='formulario' nuevosColaboradores={nuevosColaboradoresConId} mostrarAlerta={mostrarAlerta}/>
+        <Alerta mensaje={alert.mensaje} color={alert.color}/>
       </main>
     </>
   )
