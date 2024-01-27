@@ -38,9 +38,9 @@ const App = () => {
   return (
     <>
       <h1>Lista de usuarios</h1>
-      <Buscador searchData={data} setDataSearch={setDataFilter} />
+      <Buscador searchData={dataFilter} setDataFilter={setDataFilter} />
       <main className='principal'>
-        <Listado className='lista ' colaboradores={dataFilter} />
+        <Listado className='lista' colaboradores={filtro} sacarId={sacarId}/>
         <Formulario
           className='formulario'
           ingresarColaborador={setData}

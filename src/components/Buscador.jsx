@@ -2,22 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './Buscador.css'
 
-const Buscador = ({ searchData, setDataSearch }) => {
+const Buscador = ({ dataFilter, setDataFilter }) => {
   const inputHandler = (e) => {
     const searchWord = e.target.value.toLowerCase()
-
-    const output = searchData.filter(
-      (usuario) =>
-        usuario.nombre.toLowerCase().includes(searchWord) ||
-        usuario.correo.toLowerCase().includes(searchWord) ||
-        usuario.edad.toLowerCase().includes(searchWord) ||
-        usuario.cargo.toLowerCase().includes(searchWord) ||
-        usuario.telefono.toLowerCase().includes(searchWord)
-    )
-    console.log(output)
-    setDataSearch(output)
+    setDataFilter(searchWord)
   }
-
   return (
     <section className='buscador col-12 col-md-6'>
       <FontAwesomeIcon icon={faSearch} />
@@ -28,6 +17,7 @@ const Buscador = ({ searchData, setDataSearch }) => {
         placeholder='Busca un usuario'
         className='form-control mb-3'
         onChange={inputHandler}
+        value={dataFilter}
       />
     </section>
   )
