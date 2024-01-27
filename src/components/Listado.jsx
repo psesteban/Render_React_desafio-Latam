@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Listado.css'
 import { Table } from 'react-bootstrap'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 

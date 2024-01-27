@@ -56,7 +56,9 @@ const Formulario = ({ nuevosColaboradores, mostrarAlerta }) => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
   return (
+    <>
     <Form className='formulario border border-2 rounded p-2 m-1 pt-4' onSubmit={handleSubmit}>
+    <h2>Agregar colaborador</h2>
       {['Nombre', 'Correo', 'Edad', 'Cargo', 'Telefono'].map((campo) => (
         <Form.Group
           key={campo}
@@ -77,6 +79,7 @@ const Formulario = ({ nuevosColaboradores, mostrarAlerta }) => {
         Agregar colaborador
       </Button>
     </Form>
+    </>
   )
 }
 

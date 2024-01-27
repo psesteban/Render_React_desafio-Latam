@@ -8,6 +8,8 @@ const Buscador = ({ dataFilter, setDataFilter }) => {
     setDataFilter(searchWord)
   }
   return (
+    <>
+    <h2>Listado de colaboradores</h2>
     <section className='buscador col-12 col-md-6'>
       <FontAwesomeIcon icon={faSearch} />
       <input
@@ -20,6 +22,7 @@ const Buscador = ({ dataFilter, setDataFilter }) => {
         value={dataFilter}
       />
     </section>
+    </>
   )
 }
 export default Buscador

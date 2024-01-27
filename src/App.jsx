@@ -38,12 +38,15 @@ const App = () => {
 
   return (
     <>
-      <h1>Lista de usuarios</h1>
+    <main className='principal'>
+      <section>
       <Buscador searchData={dataFilter} setDataFilter={setDataFilter} />
-      <main className='principal'>
-        <Listado className='lista' colaboradores={filtro} sacarId={sacarId}/>
-        <Formulario className='formulario' nuevosColaboradores={nuevosColaboradoresConId} mostrarAlerta={mostrarAlerta}/>
-        <Alerta mensaje={alert.mensaje} color={alert.color}/>
+      <Listado className='lista' colaboradores={filtro} sacarId={sacarId}/>
+      </section>
+      <aside>
+      <Formulario className='formulario' nuevosColaboradores={nuevosColaboradoresConId} mostrarAlerta={mostrarAlerta}/>
+      <Alerta mensaje={alert.mensaje} color={alert.color}/>
+      </aside>
       </main>
     </>
   )
