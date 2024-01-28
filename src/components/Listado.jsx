@@ -1,22 +1,38 @@
-import { ListGroup, Row, Col } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './Listado.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Table } from 'react-bootstrap'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const Listado = ({ colaboradores }) => {
+const Listado = ({ colaboradores, sacarId }) => {
+  const usuarios = colaboradores.map((usuario)=>(
+    <tr className="align-middle" key={usuario.id}>
+          <td>{usuario.id}</td>
+          <td>{usuario.nombre}</td>
+          <td>{usuario.correo}</td>
+          <td>{usuario.edad}</td>
+          <td>{usuario.cargo}</td>
+          <td>{usuario.telefono}</td>
+          <td><button className="btn btn-dark" onClick={()=> {sacarId(usuario.id)}}><FontAwesomeIcon icon={faTrash} /></button></td>
+        </tr>
+  ))
   return (
-    <ListGroup className='lista'>
-      {colaboradores.map((colaborador) => (
-        <ListGroup.Item key={colaborador.id}>
-          <Row>
-            <Col>{colaborador.nombre}</Col>
-            <Col>{colaborador.correo}</Col>
-            <Col>{colaborador.edad}</Col>
-            <Col>{colaborador.cargo}</Col>
-            <Col>{colaborador.telefono}</Col>
-          </Row>
-        </ListGroup.Item>
-      ))}
-    </ListGroup>
+    <>
+      <Table striped bordered hover variant="dark">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Edad</th>
+          <th>Cargo</th>
+          <th>Teléfono</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {usuarios}
+      </tbody>
+    </Table>
+    </>
   )
 }
 

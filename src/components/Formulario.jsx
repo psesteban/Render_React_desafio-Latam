@@ -1,64 +1,64 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import Alerta from './Alert'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './Formulario.css'
 
-const Formulario = ({ ingresarColaborador, data, mostarNuevoColab }) => {
-  const objetoUsuario = {
-    id: (parseInt(data.length, 10) + 1).toString(),
+const Formulario = ({ nuevosColaboradores, mostrarAlerta }) => {
+  const [user, setUser]= useState({
+    id: '',
     nombre: '',
     correo: '',
     edad: '',
     cargo: '',
     telefono: ''
-  }
-  const [user, setUser] = useState(objetoUsuario)
-  const [mensajeDeAdvertencia, setMensajeDeAdvertencia] = useState('')
-  const [estilo, setEstilo] = useState('')
-
-  const validarDatos = () => {
-    if (Object.values(user).some((value) => value === '')) {
-      setMensajeDeAdvertencia('Todos los campos son obligatorios')
-      setEstilo('warning')
-      return false
-    }
-    return true
-  }
-
-  const validarEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const isValid = emailRegex.test(user.correo)
-
-    if (!isValid) {
-      setMensajeDeAdvertencia('Introduce un mail válido')
-      setEstilo('danger')
-      return false
-    }
-    return true
-  }
-
-  const handleSubmit = (e) => {
+  })
+  //Validando el formulario
+  const handleSubmit=(e)=>{
     e.preventDefault()
-    console.log(validarDatos(), validarEmail())
-    const datosValidos = validarDatos() && validarEmail()
-
-    if (datosValidos) {
-      setEstilo('success')
-      setMensajeDeAdvertencia('Registro realizado con éxito')
-      ingresarColaborador([...data, user])
-      setUser(objetoUsuario)
-    } else {
-      setEstilo('danger')
-    }
+    const {nombre, correo, edad, cargo, telefono}= user
+    const validaUser = !nombre || !correo || !edad || !cargo || !telefono
+    if (validaUser){
+      mostrarAlerta({
+          mensaje:'Debe llenar todos los campos',
+          color:'warning'
+      })
+      return
+  }else if (!/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(correo)) {
+          mostrarAlerta({
+              mensaje:'El correo ingresado no tiene un formato válido',
+              color:'danger'
+          })
+          return
+      }else if(!/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(telefono)){
+        mostrarAlerta({
+          mensaje:'El telefono ingresado no tiene un formato válido',
+          color:'danger'
+      })
+      return
+      }
+  mostrarAlerta({
+      mensaje:'Colaborador ingresado con éxito',
+      color:'success'
+  })
+  nuevosColaboradores(user)
+  setUser(
+      {
+          id: '',
+          nombre: '',
+          correo: '',
+          edad: '',
+          cargo: '',
+          telefono: ''
+      }
+  )
   }
-
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
   return (
+    <>
     <Form className='formulario border border-2 rounded p-2 m-1 pt-4' onSubmit={handleSubmit}>
+    <h2>Agregar colaborador</h2>
       {['Nombre', 'Correo', 'Edad', 'Cargo', 'Telefono'].map((campo) => (
         <Form.Group
           key={campo}
@@ -78,8 +78,8 @@ const Formulario = ({ ingresarColaborador, data, mostarNuevoColab }) => {
       <Button variant='primary' type='submit'>
         Agregar colaborador
       </Button>
-      <Alerta color={estilo} text={mensajeDeAdvertencia} />
     </Form>
+    </>
   )
 }
 
