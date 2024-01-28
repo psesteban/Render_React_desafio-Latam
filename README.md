@@ -1,4 +1,5 @@
 # React + Vite
+Este proyecto fue realizado por Eduardo Molina (EduMolinaV17) y Esteban Olivares (psesteban)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
